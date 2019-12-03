@@ -211,4 +211,3 @@ def get_config_from_cdnac():
 #    f_temp.write(device_config)
 #    f_temp.seek(0)  # reset the file pointer to 0
 #    f_temp.close()
-

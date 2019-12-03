@@ -1,28 +1,31 @@
 {
     "Rules" : [
       {
-        "name" : "no telnet",
+        "name" : "No telnet",
         "presence" : false,
         "command" : "telnet server",
         "value" : "enabled",
-        "passmsg" : "Passed, telnet not configured",
-        "failmsg" : "FAILED, telnet configured"
+        "passmsg" : "No telnet: Passed, telnet not configured",
+        "failmsg" : "No telnet: FAILED, telnet is configured",
+        "severity" : 80
       },
       {
-        "name" : "complex user password",
+        "name" : "Complex user password",
         "presence" : true,
         "command" : "username",
         "value" : "common-criteria-policy sanpasscomplex",
-        "passmsg" : "Passed, username has complex password policy configured",
-        "failmsg" : "FAILED, username does not have complex password policy configured"
+        "passmsg" : "Complex password: Passed, username has complex password policy configured",
+        "failmsg" : "Complex password: FAILED, username DOES NOT have complex password policy configured",
+        "severity" : 50
       },
       {
-        "name" : "ntp present",
+        "name" : "NTP present",
         "presence" : true,
         "command" : "ntp server",
         "value" : "ntp.example.com",
-        "passmsg" : "Passed, ntp server correctly configured`",
-        "failmsg" : "FAILED, ntp server not configured or set to wrong value"
+        "passmsg" : "NTP present: Passed, NTP server correctly configured`",
+        "failmsg" : "NTP present: FAILED, NTP server NOT configured or set to wrong value",
+        "severity" : 20
       }
     ]
    }
