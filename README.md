@@ -1,19 +1,67 @@
 # confcompliance
 ## Cisco DNA Center / IOS Config Compliance tool
-This is a proof of concept, not a full featured tool. Created during SEVT Hackathon.
+Configuration Compliance Manager for Cisco DNA Center
+
+This is currently a proof of concept, not a full featured tool. Created during SEVT Hackathon.
 This code will pull all device configurations from Cisco DNA Center's inventory, and check configuration against compliance rules formatted in json.
 
 * Technology stack: Python
 * Status:  Alpha, designed to prove the ability and openess of Cisco DNA Center.
 
-## How to setup
-### Cisco DNA-C
-#### Prerequisites
-* Enable Cisco DNA-C as a Platform
-  * How-To Guide https://www.cisco.com/c/en/us/td/docs/cloud-systems-management/network-automation-and-management/dna-center-platform/1-2-5/user_guide/b_dnac_platform_ug_1_2_5/b_dnac_platform_ug_1_2_5_chapter_01.html
-* Enable "DNA Center REST API" Bundle
+## Business/Technical Challenge
 
-## How to run
+Customers need a way to prove configuration compliance for IOS / IOS-XE / IOS-XR / NX-OS devices. These devices may very well be Brownfield and while they are imported into Cisco DNA Center, are not provisioned by Cisco DNA Center. Because of this brownfield requirement, a separate tool is desirable, even as Cisco DNA Center is roadmapped to receive configuration compliance features for devices that are provisioned by CDNAC.
+
+Customers need a way to write their own rules for configuration compliance, and have them vetted against running configuration on a schedule and generate a report, by site and device type / device tag.
+
+
+## Proposed Solution
+
+A Python program that verifies devices against compliance rules. Compliance rules are defined in JSON, as are device groups. The program pulls device inventory from CDNAC, matches compliance rules per device group (defined by site, type, tag), and reports on, and possibly alerts on, compliance violation, with a severity that is defined in the compliance rules.
+
+
+The current PoC needs to be expanded to include:
+- Better backend logic, expand compliance rules and introduce device rules
+- Refactor to use CDNAC SDK
+- Severity and syslog implemented as a first pass
+- CSV to JSON converter
+- Web frontend
+- Reporting
+- Alerting
+
+
+### Cisco Products Technologies/ Services
+
+
+Our solution will levegerage the following Cisco technologies
+
+* [DNA Center (DNA-C)](http://cisco.com/go/dna)
+
+## Team Members
+
+
+**TODO:** ASIC projects must consist of a minimum of 2 SE’s
+representing a minimum of 2 segments. List names here
+
+* Thorsten Behrens <tbehrens@cisco.com> - GES NE Americas
+* Jorge Banegas <jbanegas@cisco.com> - GVE DevOps / CSAP
+* Oren Brigg <obrigg@cisco.com> - GEO Israel - Data Center AF
+* Tomer Kopel <tkopel@cisco.com> - GEO Israel - Shared
+* Alif Mousa <alimousa@cisco.com> - APO - Engineering - HQ
+* Mentor: Gabi Zapodeanu <gzapodea@cisco.com> - ENB - TME
+
+
+## Solution Components
+
+
+Python + Flash
+CDNAC SDK
+ciscoconfparse
+FrontEnd TBD - could be Bootstrap or Heroku, depending on team skillset and agile direction
+Docker TBD - if time allows, docker-compose would make deployment of the tool very easy
+
+## Usage
+
 ```
 python ios-compliance.py --rulesfile <JSON rule file> --syslog_ip <IP address of the syslog server> --syslog_port <syslog port, if not 514>
 ```
@@ -21,18 +69,29 @@ python ios-compliance.py --rulesfile <JSON rule file> --syslog_ip <IP address of
 * syslog_ip - IP address of a syslog server (optional) to send the results to.
 * syslog_port - In case the syslog server is listening to a port other than 514 - specify which
 
-## Licensing info
-Copyright (c) 2019 Cisco and/or its affiliates.
 
-This software is licensed to you under the terms of the Cisco Sample
-Code License, Version 1.1 (the "License"). You may obtain a copy of the
-License at
+## Installation
 
-               https://developer.cisco.com/docs/licenses
+Currently, to be amended as project progresses:
+- Install Git
+- Install Python 3 / Pip 3
+- Pull project from github
+- ```pip install < requirements.txt```
 
-All use of the material herein must be in accordance with the terms of
-the License. All rights not expressly granted by the License are
-reserved. Unless required by applicable law or agreed to separately in
-writing, software distributed under the License is distributed on an "AS
-IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
-or implied.
+## Documentation
+
+[The data model](./hackathon_data_model.txt), to be expanded for better compliance rules and device groups.
+[Sample compliance rules](./secrules.json) for reference.
+
+
+## License
+
+Provided under Cisco Sample Code License, for details see [LICENSE](./LICENSE.md)
+
+## Code of Conduct
+
+Our code of conduct is available [here](./CODE_OF_CONDUCT.md)
+
+## Contributing
+
+See our contributing guidelines [here](./CONTRIBUTING.md)
