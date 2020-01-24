@@ -40,9 +40,6 @@ Our solution will levegerage the following Cisco technologies
 ## Team Members
 
 
-**TODO:** ASIC projects must consist of a minimum of 2 SE’s
-representing a minimum of 2 segments. List names here
-
 * Thorsten Behrens <tbehrens@cisco.com> - GES NE Americas
 * Jorge Banegas <jbanegas@cisco.com> - GVE DevOps / CSAP
 * Oren Brigg <obrigg@cisco.com> - GEO Israel - Data Center AF
@@ -54,11 +51,11 @@ representing a minimum of 2 segments. List names here
 ## Solution Components
 
 
-Python + Flash
-CDNAC SDK
-ciscoconfparse
-FrontEnd TBD - could be Bootstrap or Heroku, depending on team skillset and agile direction
-Docker TBD - if time allows, docker-compose would make deployment of the tool very easy
+- Python + Flash
+- CDNAC SDK
+- ciscoconfparse
+- FrontEnd TBD - could be Bootstrap or Heroku, depending on team skillset and agile direction
+- Docker TBD - if time allows, docker-compose would make deployment of the tool very easy
 
 ## Usage
 
@@ -76,12 +73,12 @@ Currently, to be amended as project progresses:
 - Install Git
 - Install Python 3 / Pip 3
 - Pull project from github
-- ```pip install < requirements.txt```
+- ```pip3 install -r requirements.txt```
 
 ## Documentation
 
-[The data model](./hackathon_data_model.txt), to be expanded for better compliance rules and device groups.
-[Sample compliance rules](./secrules.json) for reference.
+* [The data model](./hackathon_data_model.txt), to be expanded for better compliance rules and device groups.
+* [Sample compliance rules](./secrules.json) for reference.
 
 
 ## License
